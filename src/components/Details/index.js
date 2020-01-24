@@ -1,5 +1,4 @@
 import React from 'react';
-import { View } from 'react-native';
 
 import { Container, TypeTitle, TypeDescription, TypeImage, RequestButton, RequestButtonText} from './styles';
 import uberX from '../../assets/uberx.png'
@@ -8,8 +7,9 @@ export default function Details({distance}) {
   function getPrice(){
     let price = distance * 2.5;
     if(price < 5) price = 5
-    price = Math.floor(price);
-    return `R$${price},00`
+    price = price.toFixed(2);
+    
+    return `R$${price}`.replace('.',',')
     
   }
   return (

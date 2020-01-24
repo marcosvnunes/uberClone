@@ -77,7 +77,7 @@ export default function Map() {
             destination={destination}
             onReady={result =>{
               setDuration(Math.floor(result.duration))
-              setDistance(Math.floor(result.distance))
+              setDistance(result.distance.toFixed(2))
 
               if(mapView){
                 this.mapView.fitToCoordinates(result.coordinates,{
