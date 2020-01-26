@@ -13,7 +13,7 @@ export default function Search(props) {
       placeholderTextColor="#333"
       onPress={onLocationSelected}
       query={{
-        key:"AIzaSyDjQHoCPvlW0o-NYrd5UnjoL7ngtgiDhTA",
+        key:"DIGITE AQUI SUA KEY DA API DO GOOGLE",
         language:'pt'
       }}
       textInputProps={{

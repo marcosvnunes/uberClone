@@ -10,7 +10,7 @@ export default function Directions({destination,origin,onReady}) {
       origin={origin}
       destination={destination}
       onReady={onReady}
-      apikey="AIzaSyDjQHoCPvlW0o-NYrd5UnjoL7ngtgiDhTA"
+      apikey="DIGITE AQUI SUA KEY DA API DO GOOGLE"
       strokeWidth={3}
       strokeColor="#222"
     />

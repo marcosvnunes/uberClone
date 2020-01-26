@@ -1,6 +1,9 @@
 import React, { useEffect, useState }from 'react';
+
+import Geolocation from 'react-native-geolocation-service';
 import  MapView,{ Marker} from 'react-native-maps';
 import Geocoder from 'react-native-geocoding';
+
 import {Image } from 'react-native';
 
 import { 
@@ -18,7 +21,7 @@ import Details from '../Details';
 
 import backImage from '../../assets/back.png';
 import markerImage from '../../assets/marker.png';
-Geocoder.init('AIzaSyDjQHoCPvlW0o-NYrd5UnjoL7ngtgiDhTA')
+Geocoder.init('DIGITE AQUI SUA KEY DA API DO GOOGLE')
 
 export default function Map() {
   const [region,setRegion] = useState(null);
@@ -26,17 +29,32 @@ export default function Map() {
   const [duration, setDuration] = useState(0);
   const [distance, setDistance] = useState(0);
   const [location, setLocation] = useState('');
-  const latitude = -22.9997747;
-  const longitude = -44.3049395;
+
+  
   
     
   useEffect(()=>{
-    setRegion({
-      latitude,
-      longitude,
-      latitudeDelta:0.0143,
-      longitudeDelta:0.0134,
-    })
+    async function getGeolocation(){
+      await Geolocation.getCurrentPosition(
+        (position) => {
+            const { latitude , longitude } = position.coords;
+            
+
+            setRegion({
+              latitude,
+              longitude,
+              latitudeDelta:0.0143,
+              longitudeDelta:0.0134,
+            })
+        },
+        (error) => {
+            // See error code charts below.
+            console.log(error.code, error.message);
+        },
+        { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
+      );
+    }
+    getGeolocation();
     async function getGeoCoder(){
     
       const response = await Geocoder.from({latitude,longitude});
